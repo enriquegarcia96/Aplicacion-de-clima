@@ -9,34 +9,18 @@ const preguntas = [
         message: '¿Que desea hacer?',
         choices: [
             {
-                value: '1',
-                name: `${'1.'.green} Crear tarea`
+                value: 1,
+                name: `${'1.'.green} Buscar ciudad`
             },
             {
-                value: '2',
-                name:`${'2.'.green} Listar tareas`
+                value: 2,
+                name:`${'2.'.green} Historial`
             },
             {
-                value: '3',
-                name:`${'3.'.green} Listar tareas completadas`
-            },
-            {
-                value: '4',
-                name:`${'4.'.green} Listar tareas pendientes`
-            },
-            {
-                value: '5',
-                name:`${'5.'.green} Completar tareas(s)`
-            },
-            {
-                value: '6',
-                name:`${'6.'.green} Borrar tarea`
-            },
-            {
-                value: '0',
+                value: 0,
                 name:`${'0.'.green} Salir`
             },
-
+            
         ]
     }
 ];
@@ -96,15 +80,13 @@ const leerInput = async(message) => {
 }
 
 
-const listadoTareasBorrar = async( tareas = [] ) =>{
+const listarLugares = async( lugares = [] ) =>{
 
-    const choices = tareas.map( (tarea, indice) => {
-
+    const choices = lugares.map( (lugar, indice) => {
         const idx = `${indice + 1}.`.green
-
         return{
-            value: tarea.id,
-            name: `${idx} ${tarea.desc}`
+            value: lugar.id,
+            name: `${idx} ${lugar.nombre}`
         }
     } )
     // console.log(choices)
@@ -119,7 +101,7 @@ const listadoTareasBorrar = async( tareas = [] ) =>{
         {
             type: 'list',
             name: 'id',
-            message: 'Borrar',
+            message: 'Seleccione lugar: ',
             choices
         }
     ]
@@ -171,11 +153,16 @@ const mostrarListadoChecklist = async( tareas = [] ) =>{
 }
 
 
+
+
+
+
 module.exports = {
     inquirerMenu,
     pausa, 
     leerInput,
-    listadoTareasBorrar,
+    listarLugares,
     confirmar,
-    mostrarListadoChecklist
+    mostrarListadoChecklist,
+    
 }
